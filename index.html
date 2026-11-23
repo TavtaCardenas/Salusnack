@@ -1,0 +1,1028 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Salu Snacks | Muffins de Zanahoria Artesanales a $20 en Aguascalientes</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Playfair Display & Plus Jakarta Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Phosphor Icons -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        crema: '#FFF8FA',
+                        cremaOscuro: '#FCEEF2',
+                        rosaPastel: '#FADCE4',
+                        rosaAcento: '#F4B4C6',
+                        zanahoria: '#E5829D',
+                        zanahoriaHover: '#D46A87',
+                        espresso: '#4A2E35',
+                        cafeSuave: '#7D5A63',
+                        menta: '#2E7D32',
+                        dorado: '#D4A373'
+                    },
+                    fontFamily: {
+                        serif: ['"Playfair Display"', 'serif'],
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                    },
+                    boxShadow: {
+                        'suave': '0 10px 35px -10px rgba(229, 130, 157, 0.16)',
+                        'calida': '0 18px 45px -12px rgba(229, 130, 157, 0.32)',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #FFF8FA;
+            color: #4A2E35;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-variant-numeric: tabular-nums;
+        }
+        .font-display {
+            font-family: 'Playfair Display', serif;
+        }
+        /* Animación flotante sutil para badges */
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-6px); }
+        }
+        .animate-float {
+            animation: float 4s ease-in-out infinite;
+        }
+        /* Micro-rebote IxD al actualizar carrito o paquetes */
+        @keyframes popBadge {
+            0% { transform: scale(1); }
+            45% { transform: scale(1.18); }
+            100% { transform: scale(1); }
+        }
+        .animate-pop {
+            animation: popBadge 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+        /* Estilo personalizado para scrollbar en rosa pastel */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #FFF8FA;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #F4B4C6;
+            border-radius: 9999px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #E5829D;
+        }
+    </style>
+</head>
+<body class="antialiased selection:bg-rosaPastel selection:text-espresso pb-24 md:pb-0">
+    <!-- 1. Encabezado (Navbar) Translúcido Rosa Pastel -->
+    <header class="sticky top-0 z-40 bg-crema/90 backdrop-blur-md border-b border-[#F8D3DE]">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <!-- Logo de Salu Snacks -->
+                <a href="#" class="flex items-center gap-3 group">
+                    <div class="w-11 h-11 rounded-2xl bg-cremaOscuro border border-rosaAcento/60 flex items-center justify-center shadow-sm group-hover:scale-105 transition-transform">
+                        <i class="ph-duotone ph-cake text-2xl text-zanahoria"></i>
+                    </div>
+                    <div class="flex flex-col">
+                        <span class="font-display font-bold text-xl sm:text-2xl leading-none text-espresso tracking-tight">
+                            Salu <span class="text-zanahoria">Snacks</span>
+                        </span>
+                        <span class="text-[11px] uppercase tracking-[0.2em] text-cafeSuave font-semibold mt-0.5">
+                            Repostería Boutique · Ags
+                        </span>
+                    </div>
+                </a>
+
+                <!-- Enlaces Rápidos Desktop -->
+                <nav class="hidden md:flex items-center gap-8 text-sm font-semibold text-cafeSuave">
+                    <a href="#el-muffin" class="hover:text-zanahoria transition-colors">El Muffin</a>
+                    <a href="#paquetes" class="hover:text-zanahoria transition-colors">Promociones</a>
+                    <a href="#ubicacion" class="hover:text-zanahoria transition-colors">Nuestra Boutique</a>
+                </nav>
+
+                <!-- Botón Destacado Pedir Ahora con Badge Dinámico -->
+                <div class="flex items-center gap-3">
+                    <a href="#calculadora-box" id="nav-cart-btn" class="inline-flex items-center gap-2.5 bg-zanahoria hover:bg-zanahoriaHover text-white font-bold text-sm px-4 sm:px-5 py-2.5 sm:py-3 rounded-full shadow-calida transition-all transform hover:-translate-y-0.5 active:translate-y-0">
+                        <i class="ph-bold ph-shopping-bag text-base"></i>
+                        <span class="hidden sm:inline">Tu pedido</span>
+                        <span id="nav-cart-badge" class="bg-white text-zanahoria font-extrabold text-xs px-2 py-0.5 rounded-full min-w-[1.5rem] text-center">6</span>
+                    </a>
+                    <!-- Botón Menú Móvil -->
+                    <button id="mobile-menu-btn" aria-label="Abrir menú" class="md:hidden p-2.5 rounded-xl bg-cremaOscuro text-espresso hover:bg-rosaPastel transition-colors">
+                        <i class="ph-bold ph-list text-xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Menú Móvil Desplegable -->
+        <div id="mobile-menu" class="hidden md:hidden bg-crema border-b border-[#F8D3DE] px-4 pt-2 pb-6 space-y-3 shadow-lg">
+            <a href="#el-muffin" class="block py-2.5 px-4 rounded-xl font-semibold text-espresso hover:bg-cremaOscuro">El Muffin</a>
+            <a href="#paquetes" class="block py-2.5 px-4 rounded-xl font-semibold text-espresso hover:bg-cremaOscuro">Promociones y Pedido</a>
+            <a href="#ubicacion" class="block py-2.5 px-4 rounded-xl font-semibold text-espresso hover:bg-cremaOscuro">Nuestra Boutique · Ags</a>
+        </div>
+    </header>
+
+    <!-- 2. Sección Hero de Alto Impacto en Rosa Pastel -->
+    <section id="el-muffin" class="relative overflow-hidden pt-8 pb-16 sm:pt-12 sm:pb-24 lg:pt-16">
+        <!-- Decoración de fondo sutil en rosa pastel -->
+        <div class="absolute -top-24 -right-24 w-96 h-96 bg-rosaPastel/70 rounded-full blur-3xl pointer-events-none"></div>
+        <div class="absolute top-1/2 -left-24 w-80 h-80 bg-rosaAcento/25 rounded-full blur-3xl pointer-events-none"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
+                
+                <!-- Columna de Copywriting Persuasivo -->
+                <div class="lg:col-span-6 space-y-6 text-center lg:text-left">
+                    <!-- Etiqueta Superior -->
+                    <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-cremaOscuro border border-rosaAcento/70 text-espresso text-xs sm:text-sm font-bold shadow-sm">
+                        <span class="w-2 h-2 rounded-full bg-zanahoria animate-ping"></span>
+                        <span>+1,200 muffins horneados esta semana en Ags</span>
+                    </div>
+
+                    <!-- Titular Principal -->
+                    <h1 class="font-display font-extrabold text-4xl sm:text-5xl lg:text-[3.35rem] leading-[1.12] text-espresso tracking-tight">
+                        El antojo más dulce de Aguascalientes: esponjoso, casero y recién horneado por <span class="text-zanahoria underline decoration-rosaAcento decoration-4 underline-offset-4">solo $20 MXN.</span>
+                    </h1>
+
+                    <!-- Subtitular Apetitoso -->
+                    <p class="text-base sm:text-lg text-cafeSuave leading-relaxed max-w-2xl mx-auto lg:mx-0">
+                        Olvídate de los panqués secos y empaquetados. Cada mañana rallamos <strong>zanahoria fresca al momento</strong>, mezclamos un toque cálido de canela y horneamos artesanalmente en <strong>Salu Snacks</strong> el acompañante perfecto para tu café o tu merienda favorita.
+                    </p>
+
+                    <!-- CTAs Principales -->
+                    <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-2">
+                        <a href="#paquetes" onclick="seleccionarCantidadRapida(1)" class="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 bg-zanahoria hover:bg-zanahoriaHover text-white font-bold text-base px-8 py-4 rounded-2xl shadow-calida transition-all transform hover:-translate-y-0.5">
+                            <span>Quiero mis Muffins por $20</span>
+                            <i class="ph-bold ph-arrow-right"></i>
+                        </a>
+                        <a href="#paquetes" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-white hover:bg-cremaOscuro text-espresso border-2 border-rosaPastel font-bold text-base px-7 py-4 rounded-2xl transition-all">
+                            <i class="ph-duotone ph-gift text-zanahoria text-xl"></i>
+                            <span>Ver promociones</span>
+                        </a>
+                    </div>
+
+                    <!-- Prueba Social Rápida -->
+                    <div class="pt-4 flex flex-wrap items-center justify-center lg:justify-start gap-6 text-sm text-cafeSuave border-t border-rosaPastel">
+                        <div class="flex items-center gap-2">
+                            <div class="flex text-zanahoria">
+                                <i class="ph-fill ph-star"></i>
+                                <i class="ph-fill ph-star"></i>
+                                <i class="ph-fill ph-star"></i>
+                                <i class="ph-fill ph-star"></i>
+                                <i class="ph-fill ph-star"></i>
+                            </div>
+                            <span class="font-bold text-espresso">4.9/5</span>
+                            <span>por clientes hidrocálidos</span>
+                        </div>
+                        <div class="flex items-center gap-1.5 font-medium">
+                            <i class="ph-duotone ph-moped text-zanahoria text-lg"></i>
+                            <span>Entrega hoy mismo en Ags</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Columna Visual (Optimizada para GitHub Pages con nombres limpios y respaldo visual) -->
+                <div class="lg:col-span-6 relative">
+                    <div class="relative mx-auto max-w-lg lg:max-w-none">
+                        <!-- Imagen Principal: foto1.jpg (Muffins en plato con servilleta rosa pastel) -->
+                        <div class="relative rounded-[2rem] overflow-hidden shadow-2xl border-4 border-white bg-cremaOscuro aspect-[4/3]">
+                            <img 
+                                src="./foto1.jpg" 
+                                alt="Muffins de zanahoria artesanales de Salu Snacks con servilleta rosa pastel" 
+                                onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1607958996333-41aef7caefaa?auto=format&fit=crop&w=900&q=80';"
+                                class="w-full h-full object-cover transform hover:scale-105 transition-transform duration-700"
+                            >
+                            <!-- Etiqueta flotante de precio sobre la foto -->
+                            <div class="absolute top-4 right-4 bg-white/95 backdrop-blur-sm px-4 py-2.5 rounded-2xl shadow-lg border border-rosaPastel text-center animate-float">
+                                <span class="block text-[10px] uppercase tracking-wider font-bold text-zanahoria">Horneado Diario</span>
+                                <span class="font-display font-extrabold text-2xl text-espresso">$20 <span class="text-xs font-sans text-cafeSuave">c/u</span></span>
+                            </div>
+
+                            <!-- Cintillo inferior sensorial -->
+                            <div class="absolute bottom-0 inset-x-0 bg-gradient-to-t from-espresso/85 via-espresso/40 to-transparent p-6 text-white">
+                                <p class="font-display italic text-lg">"Corteza dorada, miga húmeda y aroma a canela recién salida del horno."</p>
+                            </div>
+                        </div>
+
+                        <!-- Mini Tarjeta Flotante Inferior Izquierda con foto2.jpg -->
+                        <div class="hidden sm:flex items-center gap-3.5 bg-white p-3.5 rounded-2xl shadow-xl border border-rosaPastel absolute -bottom-6 -left-6 max-w-xs">
+                            <img 
+                                src="./foto2.jpg" 
+                                alt="Ingredientes frescos y muffins recién horneados" 
+                                onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1587241321921-91a834d6d191?auto=format&fit=crop&w=300&q=80';"
+                                class="w-16 h-16 rounded-xl object-cover border border-rosaPastel flex-shrink-0"
+                            >
+                            <div>
+                                <span class="inline-block text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full bg-cremaOscuro text-zanahoria mb-1">100% Natural</span>
+                                <p class="text-xs font-bold text-espresso leading-snug">Zanahoria fresca rallada al momento y especias cálidas.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. Sección de Propuesta de Valor / Storytelling (Producto Destacado con foto2.jpg) -->
+    <section id="por-que-elegirnos" class="py-16 sm:py-24 bg-white border-y border-rosaPastel">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center mb-16">
+                <div class="lg:col-span-5">
+                    <div class="rounded-[2rem] overflow-hidden border-4 border-cremaOscuro shadow-suave aspect-square">
+                        <img 
+                            src="./foto2.jpg" 
+                            alt="Preparación artesanal de muffins de zanahoria en Salu Snacks"
+                            onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1587241321921-91a834d6d191?auto=format&fit=crop&w=800&q=80';"
+                            class="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
+                        >
+                    </div>
+                </div>
+                <div class="lg:col-span-7 space-y-5">
+                    <span class="inline-block px-3.5 py-1 rounded-full bg-cremaOscuro text-zanahoria text-xs font-bold uppercase tracking-[0.18em]">
+                        El Secreto de Salu Snacks
+                    </span>
+                    <h2 class="font-display font-bold text-3xl sm:text-4xl lg:text-5xl text-espresso leading-tight">
+                        No es solo un panqué. <br class="hidden sm:inline">Es tu pausa favorita del día.
+                    </h2>
+                    <p class="text-cafeSuave text-base sm:text-lg leading-relaxed">
+                        En Aguascalientes sabemos disfrutar una buena charla con café en mano. Creamos un muffin honesto, generoso y tan suave que se deshace en cada bocado, a un precio tan dulce que te permite darte el gusto todos los días.
+                    </p>
+                    <div class="grid grid-cols-2 sm:grid-cols-3 gap-4 pt-2">
+                        <div class="bg-crema p-4 rounded-2xl border border-rosaPastel">
+                            <span class="font-display font-extrabold text-2xl text-zanahoria block">100%</span>
+                            <span class="text-xs font-bold text-espresso">Zanahoria fresca</span>
+                        </div>
+                        <div class="bg-crema p-4 rounded-2xl border border-rosaPastel">
+                            <span class="font-display font-extrabold text-2xl text-zanahoria block">0%</span>
+                            <span class="text-xs font-bold text-espresso">Conservadores</span>
+                        </div>
+                        <div class="bg-crema p-4 rounded-2xl border border-rosaPastel col-span-2 sm:col-span-1">
+                            <span class="font-display font-extrabold text-2xl text-zanahoria block">$20</span>
+                            <span class="text-xs font-bold text-espresso">Precio directo Ags</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tres Pilares -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Pilar 1 -->
+                <div class="bg-crema rounded-3xl p-8 border border-rosaPastel shadow-suave hover:border-zanahoria transition-all group">
+                    <div class="w-14 h-14 rounded-2xl bg-cremaOscuro flex items-center justify-center text-zanahoria mb-6 group-hover:scale-110 transition-transform">
+                        <i class="ph-duotone ph-carrot text-3xl"></i>
+                    </div>
+                    <h3 class="font-display font-bold text-xl text-espresso mb-3">Zanahoria 100% Natural</h3>
+                    <p class="text-cafeSuave text-sm sm:text-base leading-relaxed">
+                        Nada de esencias artificiales ni harinas preparadas de bolsa. Usamos zanahoria fresca seleccionada, huevo de granja y un balance exacto de especias cálidas para lograr esa humedad irresistible.
+                    </p>
+                </div>
+
+                <!-- Pilar 2 -->
+                <div class="bg-crema rounded-3xl p-8 border border-rosaPastel shadow-suave hover:border-zanahoria transition-all group">
+                    <div class="w-14 h-14 rounded-2xl bg-cremaOscuro flex items-center justify-center text-zanahoria mb-6 group-hover:scale-110 transition-transform">
+                        <i class="ph-duotone ph-oven text-3xl"></i>
+                    </div>
+                    <h3 class="font-display font-bold text-xl text-espresso mb-3">Horneado cada mañana en Ags</h3>
+                    <p class="text-cafeSuave text-sm sm:text-base leading-relaxed">
+                        Nuestros hornos encienden desde temprana hora en Aguascalientes para que recibas tus muffins tibios, esponjosos y con ese aroma casero que conquista toda la oficina o el comedor.
+                    </p>
+                </div>
+
+                <!-- Pilar 3 -->
+                <div class="bg-crema rounded-3xl p-8 border border-rosaPastel shadow-suave hover:border-zanahoria transition-all group">
+                    <div class="w-14 h-14 rounded-2xl bg-cremaOscuro flex items-center justify-center text-zanahoria mb-6 group-hover:scale-110 transition-transform">
+                        <i class="ph-duotone ph-hand-heart text-3xl"></i>
+                    </div>
+                    <h3 class="font-display font-bold text-xl text-espresso mb-3">Precio justo ($20 MXN)</h3>
+                    <p class="text-cafeSuave text-sm sm:text-base leading-relaxed">
+                        Creemos que la repostería artesanal de alta calidad no tiene por qué ser un lujo inaccesible. Por solo $20 pesos disfrutas tamaño generoso, sabor casero y calidad boutique.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. Sección de Promociones Activas (Sin empalmes y 100% Rosa Pastel) -->
+    <section id="paquetes" class="py-16 sm:py-24 bg-gradient-to-b from-crema via-cremaOscuro/60 to-crema relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-14 space-y-3">
+                <span class="inline-block px-4 py-1.5 rounded-full bg-rosaPastel text-espresso text-xs font-bold uppercase tracking-wider border border-rosaAcento/50">
+                    Promociones Activas · Entrega Rápida
+                </span>
+                <h2 class="font-display font-bold text-3xl sm:text-4xl lg:text-5xl text-espresso">
+                    Elige tu antojo y pídelo en segundos
+                </h2>
+                <p class="text-cafeSuave text-base sm:text-lg">
+                    Selecciona una promoción con descuento o arma tu caja exacta. Calculamos tu total al instante y lo dejamos listo para enviar por WhatsApp.
+                </p>
+            </div>
+
+            <!-- Tarjetas de Promociones Activas (Alineadas en Grid limpio, CERO posicionamiento absoluto) -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-7 lg:gap-8 items-stretch mb-16" id="cards-paquetes">
+                
+                <!-- Tarjeta 1: Individual -->
+                <div id="card-pkg-1" onclick="seleccionarCantidadRapida(1, false)" class="cursor-pointer bg-white rounded-3xl p-7 sm:p-8 border-2 border-rosaPastel shadow-suave flex flex-col justify-between hover:border-zanahoria hover:-translate-y-1 transition-all duration-300">
+                    <div>
+                        <!-- Fila de Insignia integrada en el flujo superior -->
+                        <div class="flex items-center justify-between gap-2 mb-5 min-h-[2rem]">
+                            <span class="inline-flex items-center px-3.5 py-1 rounded-full bg-cremaOscuro text-cafeSuave text-xs font-bold">
+                                Antojo Individual
+                            </span>
+                            <i class="ph-duotone ph-coffee text-2xl text-zanahoria"></i>
+                        </div>
+
+                        <h3 class="font-display font-bold text-2xl text-espresso mb-2">1 Muffin</h3>
+                        <p class="text-sm text-cafeSuave leading-relaxed mb-6">
+                            El compañero ideal para tu café de media mañana o un gusto dulce a cualquier hora.
+                        </p>
+
+                        <div class="flex items-baseline gap-1.5 pt-4 mb-6 border-t border-dashed border-rosaPastel">
+                            <span class="font-display font-extrabold text-4xl text-espresso">$20</span>
+                            <span class="text-sm font-semibold text-cafeSuave">MXN / pieza</span>
+                        </div>
+
+                        <ul class="space-y-3 text-sm text-cafeSuave mb-8">
+                            <li class="flex items-center gap-2.5">
+                                <i class="ph-fill ph-check-circle text-zanahoria text-base flex-shrink-0"></i>
+                                <span>1 Muffin de zanahoria artesanal</span>
+                            </li>
+                            <li class="flex items-center gap-2.5">
+                                <i class="ph-fill ph-check-circle text-zanahoria text-base flex-shrink-0"></i>
+                                <span>Horneado el mismo día en Ags</span>
+                            </li>
+                            <li class="flex items-center gap-2.5">
+                                <i class="ph-fill ph-check-circle text-zanahoria text-base flex-shrink-0"></i>
+                                <span>Empaque individual protector</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <button type="button" onclick="event.stopPropagation(); seleccionarCantidadRapida(1, true)" class="w-full py-3.5 px-5 rounded-2xl bg-cremaOscuro hover:bg-zanahoria text-espresso hover:text-white font-bold text-sm transition-colors flex items-center justify-center gap-2">
+                        <span>Elegir Individual</span>
+                        <i class="ph-bold ph-plus"></i>
+                    </button>
+                </div>
+
+                <!-- Tarjeta 2: Caja de 6 (Más Pedido - Sin empalmes) -->
+                <div id="card-pkg-6" onclick="seleccionarCantidadRapida(6, false)" class="cursor-pointer bg-gradient-to-b from-white to-cremaOscuro/50 rounded-3xl p-7 sm:p-8 border-2 border-zanahoria shadow-calida flex flex-col justify-between hover:-translate-y-1 transition-all duration-300">
+                    <div>
+                        <!-- Fila de Insignias integradas en el flujo normal (cero overlap) -->
+                        <div class="flex flex-wrap items-center justify-between gap-2 mb-5 min-h-[2rem]">
+                            <span class="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-zanahoria text-white text-xs font-bold shadow-sm">
+                                <i class="ph-fill ph-heart"></i> Más Pedido en Ags
+                            </span>
+                            <span class="inline-flex items-center px-3 py-1 rounded-full bg-rosaPastel text-espresso text-xs font-bold">
+                                Ahorras $10
+                            </span>
+                        </div>
+
+                        <h3 class="font-display font-bold text-2xl text-espresso mb-2">Caja Para Compartir</h3>
+                        <p class="text-sm text-cafeSuave leading-relaxed mb-6">
+                            6 muffins esponjosos en caja boutique para consentir a los tuyos en casa o la oficina.
+                        </p>
+
+                        <div class="flex items-baseline gap-2.5 pt-4 mb-6 border-t border-dashed border-rosaAcento">
+                            <span class="font-display font-extrabold text-4xl text-zanahoria">$110</span>
+                            <span class="text-sm line-through text-cafeSuave/60">$120</span>
+                            <span class="text-sm font-semibold text-cafeSuave">MXN</span>
+                        </div>
+
+                        <ul class="space-y-3 text-sm text-cafeSuave mb-8">
+                            <li class="flex items-center gap-2.5">
+                                <i class="ph-fill ph-check-circle text-zanahoria text-base flex-shrink-0"></i>
+                                <span><strong>6 Muffins</strong> de zanahoria ($18.33 c/u)</span>
+                            </li>
+                            <li class="flex items-center gap-2.5">
+                                <i class="ph-fill ph-check-circle text-zanahoria text-base flex-shrink-0"></i>
+                                <span>Caja boutique Salu Snacks</span>
+                            </li>
+                            <li class="flex items-center gap-2.5">
+                                <i class="ph-fill ph-check-circle text-zanahoria text-base flex-shrink-0"></i>
+                                <span>Tarjeta de dedicatoria opcional</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <button type="button" onclick="event.stopPropagation(); seleccionarCantidadRapida(6, true)" class="w-full py-3.5 px-5 rounded-2xl bg-zanahoria hover:bg-zanahoriaHover text-white font-bold text-sm shadow-md transition-all flex items-center justify-center gap-2">
+                        <span>Seleccionar Caja de 6</span>
+                        <i class="ph-bold ph-arrow-down"></i>
+                    </button>
+                </div>
+
+                <!-- Tarjeta 3: Caja de 12 (Envío Gratis - Sin empalmes) -->
+                <div id="card-pkg-12" onclick="seleccionarCantidadRapida(12, false)" class="cursor-pointer bg-white rounded-3xl p-7 sm:p-8 border-2 border-rosaPastel shadow-suave flex flex-col justify-between hover:border-zanahoria hover:-translate-y-1 transition-all duration-300">
+                    <div>
+                        <!-- Fila de Insignias integradas en el flujo superior -->
+                        <div class="flex flex-wrap items-center justify-between gap-2 mb-5 min-h-[2rem]">
+                            <span class="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-rosaPastel text-espresso text-xs font-bold">
+                                <i class="ph-fill ph-moped text-zanahoria"></i> Envío Gratis en Ags
+                            </span>
+                            <span class="inline-flex items-center px-3 py-1 rounded-full bg-cremaOscuro text-zanahoria text-xs font-bold">
+                                Ahorras $30
+                            </span>
+                        </div>
+
+                        <h3 class="font-display font-bold text-2xl text-espresso mb-2">Caja Oficina / Familia</h3>
+                        <p class="text-sm text-cafeSuave leading-relaxed mb-6">
+                            12 muffins recién horneados ideales para juntas, cumpleaños o reuniones familiares.
+                        </p>
+
+                        <div class="flex items-baseline gap-2.5 pt-4 mb-6 border-t border-dashed border-rosaPastel">
+                            <span class="font-display font-extrabold text-4xl text-espresso">$210</span>
+                            <span class="text-sm line-through text-cafeSuave/60">$240</span>
+                            <span class="text-sm font-semibold text-cafeSuave">MXN</span>
+                        </div>
+
+                        <ul class="space-y-3 text-sm text-cafeSuave mb-8">
+                            <li class="flex items-center gap-2.5">
+                                <i class="ph-fill ph-check-circle text-zanahoria text-base flex-shrink-0"></i>
+                                <span><strong>12 Muffins</strong> recién horneados ($17.50 c/u)</span>
+                            </li>
+                            <li class="flex items-center gap-2.5">
+                                <i class="ph-fill ph-check-circle text-zanahoria text-base flex-shrink-0"></i>
+                                <span><strong>Envío GRATIS</strong> a cualquier zona de Ags</span>
+                            </li>
+                            <li class="flex items-center gap-2.5">
+                                <i class="ph-fill ph-check-circle text-zanahoria text-base flex-shrink-0"></i>
+                                <span>Ahorro total de hasta $60 MXN</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <button type="button" onclick="event.stopPropagation(); seleccionarCantidadRapida(12, true)" class="w-full py-3.5 px-5 rounded-2xl bg-espresso hover:bg-zanahoria text-white font-bold text-sm transition-colors flex items-center justify-center gap-2">
+                        <span>Elegir Caja de 12</span>
+                        <i class="ph-bold ph-sparkle"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Calculadora Interactiva de Pedidos en Rosa Pastel -->
+            <div id="calculadora-box" class="bg-white rounded-[2rem] border-2 border-rosaPastel shadow-xl overflow-hidden">
+                <div class="bg-cremaOscuro px-6 py-5 sm:px-10 border-b border-rosaPastel flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-xl bg-zanahoria text-white flex items-center justify-center flex-shrink-0 shadow-sm">
+                            <i class="ph-bold ph-calculator text-xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-display font-bold text-xl sm:text-2xl text-espresso">Configura tu caja al instante</h3>
+                            <p class="text-xs sm:text-sm text-cafeSuave">Ajusta tus muffins y desbloquea envío gratis en Aguascalientes.</p>
+                        </div>
+                    </div>
+                    <span class="text-xs font-bold text-espresso bg-white px-3.5 py-1.5 rounded-full border border-rosaAcento/60 self-start sm:self-center">
+                        Meta Envío Gratis: 12 muffins
+                    </span>
+                </div>
+
+                <!-- Barra de Progreso Gamificada hacia Envío Gratis en Rosa Pastel -->
+                <div class="bg-crema px-6 py-4 sm:px-10 border-b border-rosaPastel">
+                    <div class="flex items-center justify-between text-xs sm:text-sm font-bold mb-2">
+                        <span id="shipping-progress-text" class="text-espresso flex items-center gap-1.5">
+                            <i class="ph-duotone ph-moped text-zanahoria text-lg"></i>
+                            <span>¡Agrega 6 muffins más para desbloquear Envío Gratis en Ags!</span>
+                        </span>
+                        <span id="shipping-progress-count" class="text-zanahoria">6 / 12 pzas</span>
+                    </div>
+                    <div class="w-full h-3 bg-rosaPastel/80 rounded-full overflow-hidden p-0.5">
+                        <div id="shipping-progress-bar" class="h-full bg-zanahoria rounded-full transition-all duration-500 ease-out" style="width: 50%;"></div>
+                    </div>
+                </div>
+
+                <div class="p-6 sm:p-10 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12">
+                    <!-- Controles de Configuración -->
+                    <div class="lg:col-span-7 space-y-6">
+                        <!-- Cantidad -->
+                        <div>
+                            <label class="block text-sm font-bold text-espresso mb-2">1. ¿Cuántos muffins de zanahoria se te antojan?</label>
+                            <div class="flex flex-wrap items-center gap-4">
+                                <div class="inline-flex items-center bg-crema rounded-2xl border-2 border-rosaPastel p-1.5">
+                                    <button type="button" onclick="cambiarCantidad(-1)" aria-label="Disminuir cantidad" class="w-11 h-11 rounded-xl bg-white hover:bg-cremaOscuro text-espresso font-bold text-xl flex items-center justify-center shadow-sm transition-colors">
+                                        -
+                                    </button>
+                                    <input type="number" id="input-cantidad" value="6" min="1" max="100" onchange="actualizarCalculadora()" class="w-20 text-center font-display font-extrabold text-2xl text-espresso bg-transparent focus:outline-none">
+                                    <button type="button" onclick="cambiarCantidad(1)" aria-label="Aumentar cantidad" class="w-11 h-11 rounded-xl bg-zanahoria hover:bg-zanahoriaHover text-white font-bold text-xl flex items-center justify-center shadow-sm transition-colors">
+                                        +
+                                    </button>
+                                </div>
+
+                                <!-- Atajos de cantidad -->
+                                <div class="flex flex-wrap gap-2">
+                                    <button type="button" onclick="seleccionarCantidadRapida(1, false)" class="px-3.5 py-2 rounded-xl text-xs font-bold bg-cremaOscuro hover:bg-rosaPastel text-espresso border border-rosaPastel transition-colors">1 pza ($20)</button>
+                                    <button type="button" onclick="seleccionarCantidadRapida(6, false)" class="px-3.5 py-2 rounded-xl text-xs font-bold bg-cremaOscuro hover:bg-rosaPastel text-espresso border border-rosaPastel transition-colors">6 pzas ($110)</button>
+                                    <button type="button" onclick="seleccionarCantidadRapida(12, false)" class="px-3.5 py-2 rounded-xl text-xs font-bold bg-cremaOscuro hover:bg-rosaPastel text-espresso border border-rosaPastel transition-colors">12 pzas ($210 + Envío Gratis)</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Selector de Zona de Entrega en Aguascalientes con Tarifas Exactas -->
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div>
+                                <label for="select-zona" class="block text-sm font-bold text-espresso mb-1.5">2. Zona de Entrega en Aguascalientes</label>
+                                <select id="select-zona" onchange="actualizarCalculadora()" class="w-full px-4 py-3.5 rounded-xl border-2 border-rosaPastel bg-crema text-espresso font-semibold text-sm focus:border-zanahoria focus:outline-none">
+                                    <option value="sucursal" data-costo="0" data-label="Recoger en Sucursal (Av. Universidad)">Recoger en Sucursal — $0 MXN</option>
+                                    <option value="centro" data-costo="20" data-label="Zona Centro (San Marcos, Triana)">Zona Centro — $20 MXN</option>
+                                    <option value="norte" data-costo="25" data-label="Zona Norte (Bosques, Colosio, Pulgas)" selected>Zona Norte — $25 MXN</option>
+                                    <option value="sur" data-costo="30" data-label="Zona Sur (Jardines de la Asunción, Dorado)">Zona Sur — $30 MXN</option>
+                                    <option value="poniente" data-costo="30" data-label="Zona Poniente (Canteras, San Ignacio)">Zona Poniente — $30 MXN</option>
+                                    <option value="oriente" data-costo="30" data-label="Zona Oriente (Ojocaliente, Rodolfo Landeros)">Zona Oriente — $30 MXN</option>
+                                </select>
+                                <p class="text-[11px] text-zanahoria font-semibold mt-1.5 flex items-center gap-1">
+                                    <i class="ph-fill ph-sparkle"></i>
+                                    <span>¡En pedidos de 12+ muffins el envío pasa a $0 automáticamente!</span>
+                                </p>
+                            </div>
+                            <div>
+                                <label for="input-nombre" class="block text-sm font-bold text-espresso mb-1.5">3. Tu nombre (para tu ticket)</label>
+                                <input type="text" id="input-nombre" oninput="actualizarCalculadora()" placeholder="Ej. Sofía Hernández" class="w-full px-4 py-3.5 rounded-xl border-2 border-rosaPastel bg-crema text-espresso font-medium text-sm focus:border-zanahoria focus:outline-none">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Resumen del Pedido y Botón WhatsApp -->
+                    <div class="lg:col-span-5 bg-cremaOscuro/60 rounded-3xl p-6 sm:p-7 border border-rosaPastel flex flex-col justify-between space-y-6">
+                        <div class="space-y-4">
+                            <div class="flex items-center justify-between border-b border-rosaPastel pb-3">
+                                <span class="font-display font-bold text-lg text-espresso">Ticket de tu pedido</span>
+                                <span id="badge-promo" class="text-xs font-bold px-3 py-1 rounded-full bg-rosaPastel text-espresso">Paquete Ahorro</span>
+                            </div>
+
+                            <div class="space-y-2.5 text-sm">
+                                <div class="flex justify-between text-cafeSuave">
+                                    <span id="resumen-detalle-pzas">6 Muffins de Zanahoria</span>
+                                    <span id="resumen-subtotal" class="font-bold text-espresso">$110.00 MXN</span>
+                                </div>
+                                <div id="fila-ahorro" class="flex justify-between text-zanahoria font-bold">
+                                    <span>Descuento por paquete aplicado</span>
+                                    <span id="resumen-ahorro">-$10.00 MXN</span>
+                                </div>
+                                <div class="flex justify-between text-cafeSuave">
+                                    <span id="resumen-metodo-texto">Zona Norte (Bosques, Colosio)</span>
+                                    <span id="resumen-envio" class="font-bold text-espresso">$25.00 MXN</span>
+                                </div>
+                            </div>
+
+                            <div class="border-t border-rosaPastel pt-4 flex items-baseline justify-between">
+                                <span class="font-bold text-espresso text-base">Total final:</span>
+                                <div class="text-right">
+                                    <span id="resumen-total" class="font-display font-extrabold text-3xl text-zanahoria">$135</span>
+                                    <span class="text-xs font-bold text-espresso">MXN</span>
+                                </div>
+                            </div>
+
+                            <!-- Vista previa del mensaje -->
+                            <div class="bg-white p-3.5 rounded-2xl border border-rosaPastel text-xs text-cafeSuave">
+                                <div class="flex items-center justify-between mb-1">
+                                    <span class="font-bold text-espresso flex items-center gap-1">
+                                        <i class="ph-fill ph-whatsapp-logo text-[#25D366] text-sm"></i> Vista previa WhatsApp:
+                                    </span>
+                                    <button type="button" onclick="copiarMensaje()" class="text-zanahoria hover:underline font-bold">Copiar texto</button>
+                                </div>
+                                <p id="preview-whatsapp" class="italic leading-relaxed text-[11px] bg-crema p-2 rounded-lg"></p>
+                            </div>
+                        </div>
+
+                        <div class="space-y-2.5">
+                            <button type="button" onclick="abrirModalWhatsApp()" class="w-full py-4 px-6 rounded-2xl bg-zanahoria hover:bg-zanahoriaHover text-white font-bold text-base shadow-calida transition-all transform hover:-translate-y-0.5 flex items-center justify-center gap-2.5">
+                                <i class="ph-fill ph-whatsapp-logo text-2xl"></i>
+                                <span>Pedir por WhatsApp</span>
+                            </button>
+                            <p class="text-[11px] text-center text-cafeSuave">
+                                Pago contra entrega en efectivo o transferencia en Aguascalientes.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. Galería de la Sucursal y Experiencia Boutique (Optimizada para GitHub Pages) -->
+    <section id="ubicacion" class="py-16 sm:py-24 bg-white border-t border-rosaPastel">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center mb-16">
+                <!-- Galería Collage Editorial con rutas relativas limpias -->
+                <div class="lg:col-span-7 grid grid-cols-2 gap-4">
+                    <div class="col-span-2 sm:col-span-1 space-y-4">
+                        <!-- Foto 3: foto3.jpg (Mostrador y vitrina iluminada) -->
+                        <div class="rounded-3xl overflow-hidden shadow-suave border-2 border-rosaPastel aspect-[4/3] relative group">
+                            <img 
+                                src="./foto3.jpg" 
+                                alt="Mostrador y vitrinas iluminadas de Salu Snacks"
+                                onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1555507036-ab1f4038808a?auto=format&fit=crop&w=700&q=80';"
+                                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                            >
+                            <span class="absolute bottom-3 left-3 bg-white/95 backdrop-blur-sm px-3 py-1 rounded-full text-xs font-bold text-espresso shadow-sm">
+                                Vitrinas recién surtidas
+                            </span>
+                        </div>
+                        <!-- Foto 1: foto1.jpg (Presentación en mesa con servilleta rosa) -->
+                        <div class="rounded-3xl overflow-hidden shadow-suave border-2 border-rosaPastel aspect-[4/3] relative group">
+                            <img 
+                                src="./foto1.jpg" 
+                                alt="Muffins de zanahoria servidos en Salu Snacks"
+                                onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1607958996333-41aef7caefaa?auto=format&fit=crop&w=700&q=80';"
+                                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                            >
+                            <span class="absolute bottom-3 left-3 bg-white/95 backdrop-blur-sm px-3 py-1 rounded-full text-xs font-bold text-espresso shadow-sm">
+                                Rincón del café y merienda
+                            </span>
+                        </div>
+                    </div>
+
+                    <!-- Foto 4: foto4.avif (Boutique luminosa en tonos rosa pastel) -->
+                    <div class="col-span-2 sm:col-span-1">
+                        <div class="rounded-3xl overflow-hidden shadow-calida border-2 border-rosaPastel h-full min-h-[320px] relative group">
+                            <img 
+                                src="./foto4.avif" 
+                                alt="Interior boutique en tonos rosa pastel y vitrinas de Salu Snacks"
+                                onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1517433670267-08bbd4be890f?auto=format&fit=crop&w=700&q=80';"
+                                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                            >
+                            <div class="absolute inset-0 bg-gradient-to-t from-espresso/85 via-transparent to-transparent flex flex-col justify-end p-6 text-white">
+                                <span class="text-xs uppercase tracking-widest text-rosaPastel font-bold">Salu Snacks · Ags</span>
+                                <p class="font-display font-bold text-xl mt-1">Un espacio dulce, cálido y luminoso en tonos rosa pastel.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Información de Ubicación y Horarios en Aguascalientes -->
+                <div class="lg:col-span-5 space-y-6">
+                    <span class="text-xs font-bold uppercase tracking-[0.2em] text-zanahoria">Nuestra Boutique & Atmósfera</span>
+                    <h2 class="font-display font-bold text-3xl sm:text-4xl text-espresso leading-tight">
+                        Pasa por tu muffin tibio y un café recién hecho.
+                    </h2>
+                    <p class="text-cafeSuave text-base leading-relaxed">
+                        Te esperamos en nuestra boutique diseñada con detalles en madera clara y rosa pastel, perfecta para venir por tu caja para llevar o disfrutar una tarde tranquila en Aguascalientes.
+                    </p>
+
+                    <div class="space-y-4 pt-2">
+                        <div class="flex items-start gap-4 p-4 rounded-2xl bg-crema border border-rosaPastel">
+                            <div class="w-10 h-10 rounded-xl bg-cremaOscuro text-zanahoria flex items-center justify-center flex-shrink-0">
+                                <i class="ph-duotone ph-map-pin text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-espresso text-sm">Dirección en Aguascalientes</h4>
+                                <p class="text-sm text-cafeSuave mt-0.5">Av. Universidad #412, Col. Bosques del Prado Norte, C.P. 20127, Aguascalientes, Ags.</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-4 p-4 rounded-2xl bg-crema border border-rosaPastel">
+                            <div class="w-10 h-10 rounded-xl bg-cremaOscuro text-zanahoria flex items-center justify-center flex-shrink-0">
+                                <i class="ph-duotone ph-clock text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-espresso text-sm">Horario de Horneado y Atención</h4>
+                                <p class="text-sm text-cafeSuave mt-0.5">Lunes a Sábado: 8:00 AM – 8:30 PM<br>Domingos: 9:30 AM – 6:00 PM</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-4 p-4 rounded-2xl bg-crema border border-rosaPastel">
+                            <div class="w-10 h-10 rounded-xl bg-cremaOscuro text-zanahoria flex items-center justify-center flex-shrink-0">
+                                <i class="ph-duotone ph-whatsapp-logo text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-espresso text-sm">Pedidos Directos por WhatsApp</h4>
+                                <a href="https://wa.me/524491937421?text=Hola%20Salu%20Snacks%2C%20me%20gustar%C3%ADa%20hacer%20un%20pedido%20de%20muffins%20de%20zanahoria." target="_blank" rel="noopener noreferrer" class="text-sm font-bold text-zanahoria hover:underline mt-0.5 inline-block">
+                                    +52 (449) 193-7421
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 6. Footer con Llamado Final a la Acción en Armonía Rosa Pastel -->
+    <footer class="bg-espresso text-crema pt-16 pb-10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <!-- Banner CTA Final -->
+            <div class="bg-gradient-to-r from-zanahoria to-zanahoriaHover rounded-3xl p-8 sm:p-12 mb-14 text-center sm:text-left flex flex-col sm:flex-row items-center justify-between gap-6 shadow-2xl">
+                <div class="space-y-2 max-w-xl">
+                    <h2 class="font-display font-bold text-2xl sm:text-4xl text-white">
+                        ¿Ya se te antojó uno con cafecito?
+                    </h2>
+                    <p class="text-white/90 text-sm sm:text-base">
+                        Aparta tus muffins de zanahoria recién horneados a $20 MXN en Salu Snacks antes de que se termine la tanda del día.
+                    </p>
+                </div>
+                <button type="button" onclick="abrirModalWhatsApp()" class="w-full sm:w-auto bg-white hover:bg-crema text-espresso font-bold px-8 py-4 rounded-2xl shadow-lg transition-transform hover:-translate-y-0.5 flex items-center justify-center gap-2.5 flex-shrink-0">
+                    <i class="ph-fill ph-whatsapp-logo text-2xl text-zanahoria"></i>
+                    <span>Hacer mi pedido ahora</span>
+                </button>
+            </div>
+
+            <div class="flex flex-col sm:flex-row items-center justify-between gap-4 border-t border-white/10 pt-8 text-xs text-rosaPastel/80">
+                <div class="flex flex-wrap items-center justify-center sm:justify-start gap-2">
+                    <i class="ph-duotone ph-cake text-lg text-rosaAcento"></i>
+                    <span class="font-display font-bold text-base text-white">Salu Snacks</span>
+                    <span>· Aguascalientes, México</span>
+                    <span class="hidden sm:inline">·</span>
+                    <a href="https://wa.me/524491937421?text=Hola%20Salu%20Snacks%2C%20quiero%20pedir%20muffins%20de%20zanahoria." target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1 font-bold text-rosaAcento hover:text-white transition-colors">
+                        <i class="ph-fill ph-whatsapp-logo"></i> +52 (449) 193-7421
+                    </a>
+                </div>
+                <p>Ejercicio simulado de diseño UX/UI y copywriting · Muffins de zanahoria a $20 MXN.</p>
+            </div>
+            <div class="mt-4 pt-3 border-t border-white/5 text-center text-[11px] text-rosaPastel/60">
+                Guía de despliegue GitHub Pages: coloca tus fotos en la misma carpeta que <code class="text-white">index.html</code> nombradas en minúsculas como <code class="text-white">foto1.jpg</code>, <code class="text-white">foto2.jpg</code>, <code class="text-white">foto3.jpg</code> y <code class="text-white">foto4.avif</code>.
+            </div>
+        </div>
+    </footer>
+
+    <!-- Barra Flotante Persistente en Móvil (Sticky Bottom Bar Rosa Pastel) -->
+    <div id="sticky-mobile-bar" class="fixed bottom-0 inset-x-0 z-40 md:hidden bg-white/95 backdrop-blur-md border-t-2 border-rosaPastel px-4 py-3 shadow-[0_-10px_30px_rgba(229,130,157,0.18)] flex items-center justify-between gap-3">
+        <div>
+            <div class="flex items-center gap-1.5">
+                <span id="sticky-qty-text" class="text-xs font-bold text-cafeSuave">6 muffins</span>
+                <span id="sticky-free-badge" class="hidden text-[10px] font-bold px-2 py-0.5 rounded-full bg-cremaOscuro text-zanahoria">Envío Gratis</span>
+            </div>
+            <div class="font-display font-extrabold text-xl text-espresso leading-none mt-0.5">
+                <span id="sticky-total-text">$135</span> <span class="text-xs font-sans font-bold text-zanahoria">MXN</span>
+            </div>
+        </div>
+        <button type="button" onclick="abrirModalWhatsApp()" class="bg-zanahoria hover:bg-zanahoriaHover text-white font-bold text-sm px-5 py-3 rounded-xl shadow-md flex items-center gap-2 active:scale-95 transition-transform">
+            <i class="ph-fill ph-whatsapp-logo text-lg"></i>
+            <span>Pedir ahora</span>
+        </button>
+    </div>
+
+    <!-- Modal Interactivo de Confirmación WhatsApp en Rosa Pastel -->
+    <div id="whatsapp-modal" class="hidden fixed inset-0 z-50 bg-espresso/60 backdrop-blur-sm flex items-center justify-center p-4">
+        <div class="bg-white rounded-3xl max-w-md w-full p-6 sm:p-7 border-2 border-rosaPastel shadow-2xl space-y-5 animate-pop">
+            <div class="flex items-start justify-between">
+                <div class="flex items-center gap-3">
+                    <div class="w-12 h-12 rounded-2xl bg-cremaOscuro text-zanahoria flex items-center justify-center">
+                        <i class="ph-fill ph-whatsapp-logo text-3xl"></i>
+                    </div>
+                    <div>
+                        <span class="text-[11px] font-bold uppercase tracking-wider text-zanahoria">Pedido Listo para Enviar</span>
+                        <h3 class="font-display font-bold text-xl text-espresso">Salu Snacks · Ags</h3>
+                        <p class="text-xs font-bold text-cafeSuave mt-0.5">WhatsApp: +52 (449) 193-7421</p>
+                    </div>
+                </div>
+                <button type="button" onclick="cerrarModalWhatsApp()" aria-label="Cerrar ventana" class="p-2 rounded-xl bg-cremaOscuro hover:bg-rosaPastel text-espresso transition-colors">
+                    <i class="ph-bold ph-x text-lg"></i>
+                </button>
+            </div>
+
+            <p class="text-xs sm:text-sm text-cafeSuave leading-relaxed">
+                Tu orden está calculada con las promociones vigentes. Puedes copiar el mensaje generado o abrir directamente el chat de WhatsApp al <strong>+52 (449) 193-7421</strong>:
+            </p>
+
+            <div class="bg-crema p-4 rounded-2xl border border-rosaPastel text-xs sm:text-sm text-espresso font-medium leading-relaxed" id="modal-mensaje-preview">
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-1">
+                <button type="button" onclick="copiarMensaje()" class="py-3.5 px-4 rounded-xl bg-cremaOscuro hover:bg-rosaPastel text-espresso font-bold text-sm transition-colors flex items-center justify-center gap-2">
+                    <i class="ph-bold ph-copy"></i>
+                    <span>Copiar mensaje</span>
+                </button>
+                <button type="button" onclick="ejecutarAperturaWhatsApp()" class="py-3.5 px-4 rounded-xl bg-zanahoria hover:bg-zanahoriaHover text-white font-bold text-sm shadow-md transition-colors flex items-center justify-center gap-2">
+                    <i class="ph-fill ph-paper-plane-tilt"></i>
+                    <span>Abrir WhatsApp</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Notificación Toast Personalizada -->
+    <div id="toast-notification" class="fixed bottom-20 md:bottom-5 right-5 z-50 transform translate-y-24 opacity-0 transition-all duration-300 pointer-events-none">
+        <div class="bg-espresso text-white px-5 py-3.5 rounded-2xl shadow-2xl border border-rosaAcento/40 flex items-center gap-3 max-w-sm">
+            <i id="toast-icon" class="ph-fill ph-check-circle text-xl text-rosaAcento"></i>
+            <span id="toast-text" class="text-sm font-medium">Mensaje copiado al portapapeles</span>
+        </div>
+    </div>
+
+    <!-- Lógica Interactiva de la Calculadora y UI -->
+    <script>
+        // Toggle menú móvil
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        mobileMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+
+        // Mostrar notificación toast sin usar alert()
+        function mostrarToast(mensaje, tipo = 'exito') {
+            const toast = document.getElementById('toast-notification');
+            const toastText = document.getElementById('toast-text');
+            const toastIcon = document.getElementById('toast-icon');
+
+            toastText.textContent = mensaje;
+            if (tipo === 'whatsapp') {
+                toastIcon.className = 'ph-fill ph-whatsapp-logo text-2xl text-rosaAcento';
+            } else {
+                toastIcon.className = 'ph-fill ph-check-circle text-xl text-rosaAcento';
+            }
+
+            toast.classList.remove('translate-y-24', 'opacity-0');
+            setTimeout(() => {
+                toast.classList.add('translate-y-24', 'opacity-0');
+            }, 3800);
+        }
+
+        // Selección rápida desde tarjetas de promociones o botones de atajo
+        function seleccionarCantidadRapida(cantidad, hacerScroll = true) {
+            const inputCantidad = document.getElementById('input-cantidad');
+            inputCantidad.value = cantidad;
+            actualizarCalculadora();
+
+            // Resaltar tarjeta activa en rosa pastel
+            [1, 6, 12].forEach(pkg => {
+                const card = document.getElementById(`card-pkg-${pkg}`);
+                if (!card) return;
+                if (pkg === cantidad) {
+                    card.classList.remove('border-rosaPastel', 'shadow-suave');
+                    card.classList.add('border-zanahoria', 'shadow-calida', 'ring-2', 'ring-zanahoria/25');
+                } else {
+                    card.classList.remove('border-zanahoria', 'shadow-calida', 'ring-2', 'ring-zanahoria/25');
+                    card.classList.add('border-rosaPastel', 'shadow-suave');
+                }
+            });
+
+            if (hacerScroll) {
+                const calcBox = document.getElementById('calculadora-box');
+                if (calcBox) {
+                    calcBox.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }
+            }
+        }
+
+        // Incrementar o decrementar cantidad
+        function cambiarCantidad(delta) {
+            const inputCantidad = document.getElementById('input-cantidad');
+            let valorActual = parseInt(inputCantidad.value, 10) || 1;
+            let nuevoValor = valorActual + delta;
+            if (nuevoValor < 1) nuevoValor = 1;
+            if (nuevoValor > 100) nuevoValor = 100;
+            inputCantidad.value = nuevoValor;
+            actualizarCalculadora();
+        }
+
+        // Animar badge del navbar al cambiar cantidad
+        function animarBadgeCarrito() {
+            const badge = document.getElementById('nav-cart-badge');
+            if (!badge) return;
+            badge.classList.remove('animate-pop');
+            void badge.offsetWidth;
+            badge.classList.add('animate-pop');
+        }
+
+        // Cálculo inteligente de precios, paquetes y barra de progreso en rosa pastel
+        function actualizarCalculadora() {
+            const inputCantidad = document.getElementById('input-cantidad');
+            let cantidad = parseInt(inputCantidad.value, 10);
+            if (isNaN(cantidad) || cantidad < 1) {
+                cantidad = 1;
+                inputCantidad.value = 1;
+            }
+
+            const selectZona = document.getElementById('select-zona');
+            const opcionSeleccionada = selectZona.options[selectZona.selectedIndex];
+            const zonaValue = selectZona.value;
+            const costoBaseZona = parseInt(opcionSeleccionada.getAttribute('data-costo'), 10) || 0;
+            const etiquetaZona = opcionSeleccionada.getAttribute('data-label') || 'Aguascalientes';
+            const nombreCliente = document.getElementById('input-nombre').value.trim();
+
+            const cajas12 = Math.floor(cantidad / 12);
+            const restoTras12 = cantidad % 12;
+            const cajas6 = Math.floor(restoTras12 / 6);
+            const sueltas = restoTras12 % 6;
+
+            const subtotalConPromo = (cajas12 * 210) + (cajas6 * 110) + (sueltas * 20);
+            const precioSinPromo = cantidad * 20;
+            const ahorro = precioSinPromo - subtotalConPromo;
+
+            let costoEnvio = 0;
+            let textoMetodo = etiquetaZona;
+            if (zonaValue === 'sucursal') {
+                costoEnvio = 0;
+            } else if (cantidad >= 12) {
+                costoEnvio = 0;
+                textoMetodo = `${etiquetaZona} (¡Envío Gratis!)`;
+            } else {
+                costoEnvio = costoBaseZona;
+            }
+
+            const totalFinal = subtotalConPromo + costoEnvio;
+
+            const navBadge = document.getElementById('nav-cart-badge');
+            if (navBadge && navBadge.textContent !== String(cantidad)) {
+                navBadge.textContent = cantidad;
+                animarBadgeCarrito();
+            }
+            document.getElementById('sticky-qty-text').textContent = `${cantidad} ${cantidad === 1 ? 'muffin' : 'muffins'}`;
+            document.getElementById('sticky-total-text').textContent = `$${totalFinal}`;
+            const stickyFreeBadge = document.getElementById('sticky-free-badge');
+            if (cantidad >= 12 || zonaValue === 'sucursal') {
+                stickyFreeBadge.classList.remove('hidden');
+            } else {
+                stickyFreeBadge.classList.add('hidden');
+            }
+
+            // Actualizar barra de progreso gamificada hacia Envío Gratis
+            const progresoPorcentaje = Math.min(100, Math.round((cantidad / 12) * 100));
+            const progressBar = document.getElementById('shipping-progress-bar');
+            const progressText = document.getElementById('shipping-progress-text');
+            const progressCount = document.getElementById('shipping-progress-count');
+
+            progressBar.style.width = `${progresoPorcentaje}%`;
+            progressCount.textContent = `${Math.min(cantidad, 12)} / 12 pzas`;
+
+            if (cantidad >= 12) {
+                progressBar.classList.remove('bg-zanahoria');
+                progressBar.classList.add('bg-[#3B8765]');
+                progressText.innerHTML = `<i class="ph-fill ph-check-circle text-[#3B8765] text-lg"></i> <span class="text-[#3B8765]">¡Felicidades! Desbloqueaste Envío Gratis en todo Aguascalientes.</span>`;
+            } else {
+                progressBar.classList.remove('bg-[#3B8765]');
+                progressBar.classList.add('bg-zanahoria');
+                const faltantes = 12 - cantidad;
+                progressText.innerHTML = `<i class="ph-duotone ph-moped text-zanahoria text-lg"></i> <span>¡Agrega ${faltantes} ${faltantes === 1 ? 'muffin' : 'muffins'} más para desbloquear Envío Gratis en Ags!</span>`;
+            }
+
+            document.getElementById('resumen-detalle-pzas').textContent = `${cantidad} ${cantidad === 1 ? 'Muffin' : 'Muffins'} de Zanahoria`;
+            document.getElementById('resumen-subtotal').textContent = `$${subtotalConPromo.toFixed(2)} MXN`;
+
+            const filaAhorro = document.getElementById('fila-ahorro');
+            const badgePromo = document.getElementById('badge-promo');
+            if (ahorro > 0) {
+                filaAhorro.classList.remove('hidden');
+                document.getElementById('resumen-ahorro').textContent = `-$${ahorro.toFixed(2)} MXN`;
+                badgePromo.textContent = cantidad >= 12 ? '¡Envío Gratis + Ahorro!' : 'Paquete Ahorro';
+            } else {
+                filaAhorro.classList.add('hidden');
+                badgePromo.textContent = 'Precio Unitario $20';
+            }
+
+            document.getElementById('resumen-metodo-texto').textContent = textoMetodo;
+            document.getElementById('resumen-envio').textContent = costoEnvio === 0 ? 'GRATIS ($0)' : `$${costoEnvio.toFixed(2)} MXN`;
+            document.getElementById('resumen-total').textContent = `$${totalFinal}`;
+
+            const saludoNombre = nombreCliente ? `Hola Salu Snacks, soy *${nombreCliente}*. ` : `Hola Salu Snacks, `;
+            const detalleEntrega = zonaValue === 'sucursal'
+                ? `Paso a recoger en sucursal (Av. Universidad, Ags).`
+                : `Para entrega en *${etiquetaZona}, Aguascalientes*.`;
+
+            const mensajeWhatsApp = `${saludoNombre}Quiero pedir *${cantidad} ${cantidad === 1 ? 'muffin' : 'muffins'} de zanahoria artesanales*. ${detalleEntrega} Total final: *$${totalFinal} MXN*. ¿A qué hora estarían listos?`;
+
+            document.getElementById('preview-whatsapp').textContent = mensajeWhatsApp;
+            return mensajeWhatsApp;
+        }
+
+        function copiarMensaje() {
+            const mensaje = actualizarCalculadora();
+            const tempTextarea = document.createElement('textarea');
+            tempTextarea.value = mensaje;
+            document.body.appendChild(tempTextarea);
+            tempTextarea.select();
+            try {
+                document.execCommand('copy');
+                mostrarToast('¡Resumen de pedido copiado al portapapeles!');
+            } catch (err) {
+                mostrarToast('No se pudo copiar automáticamente.');
+            }
+            document.body.removeChild(tempTextarea);
+        }
+
+        function abrirModalWhatsApp() {
+            const mensaje = actualizarCalculadora();
+            document.getElementById('modal-mensaje-preview').textContent = mensaje;
+            document.getElementById('whatsapp-modal').classList.remove('hidden');
+        }
+
+        function cerrarModalWhatsApp() {
+            document.getElementById('whatsapp-modal').classList.add('hidden');
+        }
+
+        function ejecutarAperturaWhatsApp() {
+            const mensaje = actualizarCalculadora();
+            const telefonoWhatsApp = '524491937421';
+            const urlWhatsApp = `https://wa.me/${telefonoWhatsApp}?text=${encodeURIComponent(mensaje)}`;
+
+            cerrarModalWhatsApp();
+            mostrarToast('Abriendo WhatsApp (+52 449 193 7421) con tu pedido...', 'whatsapp');
+            setTimeout(() => {
+                window.open(urlWhatsApp, '_blank', 'noopener,noreferrer');
+            }, 500);
+        }
+// ... existing code ... -->
